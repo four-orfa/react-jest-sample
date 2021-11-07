@@ -17,7 +17,8 @@ export const fetchDummy = createAsyncThunk('fetch/dummy', async (num) => {
 
 export const fetchJSON = createAsyncThunk('fetch/api', async () => {
   const res = await axios.get('https://jsonplaceholder.typicode.com/users/1')
-  return res.data
+  const { username } = res.data
+  return username
 })
 
 export const customCounterSlice = createSlice({
@@ -66,7 +67,11 @@ export const customCounterSlice = createSlice({
       state.value = 100 - action.payload
     })
     builder.addCase(fetchJSON.fulfilled, (state, action) => {
+      console.log(action.payload)
       state.username = action.payload
+    })
+    builder.addCase(fetchJSON.rejected, (state, action) => {
+      state.username = 'anonymous'
     })
   },
 })

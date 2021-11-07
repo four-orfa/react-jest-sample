@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import customCounterReducer from './features/customCounter/customCounterSlice'
 import ReduxAsync from './ReduxAsync'
-import { act } from 'react-dom/test-utils'
 
 afterEach(() => {
   cleanup()
